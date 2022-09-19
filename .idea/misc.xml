@@ -5,6 +5,9 @@
       <map>
         <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.2595" />
         <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/app/src/main/res/layout/activity_moisture_sensor.xml" value="0.25416666666666665" />
+        <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/app/src/main/res/layout/activity_motor.xml" value="0.25416666666666665" />
+        <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/app/src/main/res/layout/activity_temperature_sensor.xml" value="0.25416666666666665" />
         <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/app/src/main/res/layout/fragment_dash_board.xml" value="0.25416666666666665" />
       </map>
     </option>
