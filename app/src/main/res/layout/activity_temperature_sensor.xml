@@ -191,6 +191,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/about_temperature_sensor"
                 android:textAlignment="textStart"
+                android:padding="8dp"
                 android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>

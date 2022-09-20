@@ -199,6 +199,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/about_moisture_sensor1"
                 android:textAlignment="textStart"
+                android:padding="8dp"
                 android:textSize="16sp" />
 
             <LinearLayout
@@ -231,6 +232,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/what_soil_sensor"
                 android:textAlignment="textStart"
+                android:padding="8dp"
                 android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
