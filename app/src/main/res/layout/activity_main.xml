@@ -7,106 +7,117 @@
     tools:context=".Activities.MainActivity">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView4"
         android:layout_width="match_parent"
-        android:layout_height="?android:actionBarSize"
-        android:padding="8dp"
-        android:background="@color/lightblue"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/lightblue"
+        app:cardElevation="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="8dp"
-            android:layout_marginBottom="4dp"
-            android:src="@drawable/soil_sensor"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="?android:actionBarSize"
+            android:background="@color/lightblue"
+            android:padding="8dp">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:fontFamily="@font/black_han_sans"
-            android:gravity="center"
-            android:text="Smart"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="8dp"
+                android:layout_marginBottom="4dp"
+                android:src="@drawable/logo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView19"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Farm"
-            android:textColor="@color/green"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/black_han_sans"
-            app:layout_constraintBottom_toBottomOf="@+id/textView"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
-        <TextView
-            android:id="@+id/notification_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2"
-            android:textColor="@color/red"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/notification"
-            app:layout_constraintStart_toEndOf="@+id/notification"
-            app:layout_constraintTop_toTopOf="@+id/notification" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/black_han_sans"
+                android:gravity="center"
+                android:text="Smart"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/notification"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/borderImageCardView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_notifications_24" />
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/black_han_sans"
+                android:text="IS"
+                android:textColor="@color/light_orange"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textView"
+                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintTop_toTopOf="@+id/textView" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/borderImageCardView"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/temperature_sensor"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-12dp"
+                android:layout_marginLeft="-12dp"
+                app:cardBackgroundColor="@color/light_orange"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/notification"
+                app:layout_constraintStart_toEndOf="@+id/notification"
+                app:layout_constraintTop_toTopOf="@+id/notification">
 
-        </de.hdodenhof.circleimageview.CircleImageView>
+                <TextView
+                    android:id="@+id/notification_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="2"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
-        <Spinner
-            android:id="@+id/language_spinner"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginRight="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/notification"
-            app:layout_constraintStart_toEndOf="@+id/textView19"
-            app:layout_constraintTop_toTopOf="parent" />
+            </androidx.cardview.widget.CardView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/notification"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/borderImageCardView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_notifications_24" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/borderImageCardView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/user"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </de.hdodenhof.circleimageview.CircleImageView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <View
         android:id="@+id/view2"
@@ -116,7 +127,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView4" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -133,15 +144,29 @@
 
 
         <TextView
+            android:id="@+id/select_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_gravity="right"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/button_style2"
+            android:gravity="center"
+            android:text="@string/select_language"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/dashboard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="DashBoard"
+            android:text="@string/dashboard"
             android:textColor="@color/lightblue"
-            android:textSize="24dp"
+            android:textSize="28dp"
             android:textStyle="bold" />
 
         <TextView
@@ -150,7 +175,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Weather Forecast"
+            android:text="@string/weather_forecast"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -185,7 +210,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
-                    android:text="Today"
+                    android:text="@string/today"
                     android:textColor="@color/green"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -227,7 +252,7 @@
                     android:src="@drawable/wind"
                     app:layout_constraintBottom_toBottomOf="@+id/wind"
                     app:layout_constraintEnd_toStartOf="@+id/wind"
-                    app:layout_constraintTop_toTopOf="@+id/wind"/>
+                    app:layout_constraintTop_toTopOf="@+id/wind" />
 
                 <ImageView
                     android:id="@+id/rainImage"
@@ -258,10 +283,24 @@
                     android:id="@+id/wind"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    android:text="6"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView28"
+                    app:layout_constraintEnd_toStartOf="@+id/textView28"
+                    app:layout_constraintTop_toTopOf="@+id/textView28" />
+
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="6m/s"
+                    android:layout_marginBottom="8dp"
+                    android:text="m/s"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -274,12 +313,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
+                    android:format12Hour="hh:mm:ss"
+                    android:gravity="center"
                     android:text="00:00:00"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:gravity="center"
-                    android:format12Hour="hh:mm:ss"
                     app:layout_constraintBottom_toBottomOf="@+id/date"
                     app:layout_constraintEnd_toStartOf="@+id/date"
                     app:layout_constraintTop_toTopOf="@+id/date" />
@@ -291,8 +330,8 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:text=""
                     android:format12Hour="dd MMM"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -322,7 +361,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Sensor Values"
+            android:text="@string/sensor_values"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -369,7 +408,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:inputType="textMultiLine"
-                    android:text="Soil moisture sensors measure the water content in the soil..."
+                    android:text="@string/soil_sensor_intro"
                     android:textColor="@color/lightblue"
                     android:textSize="16dp"
                     android:textStyle="bold"
@@ -484,7 +523,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:inputType="textMultiLine"
-                    android:text="A temperature sensor measures the temperature of its environment..."
+                    android:text="@string/temperature_sensor_intro"
                     android:textColor="@color/light_orange"
                     android:textSize="16dp"
                     android:textStyle="bold"
@@ -541,10 +580,9 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="20dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/next_page_arrow"
-            app:cardCornerRadius="20dp" />
+            android:src="@drawable/next_page_arrow" />
 
     </LinearLayout>
 

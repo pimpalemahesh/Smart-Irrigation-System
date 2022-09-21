@@ -63,6 +63,7 @@ public class MotorActivity extends AppCompatActivity {
             motorState = false;
             binding.motorSpeedSeekbar.setEnabled(false);
             binding.motorSpeedSeekbar.setProgress(0);
+            binding.motorWorkingTime.setText("00:00");
             binding.motorSpeed.setText("0");
             if(!motorState){
                 binding.buttonState.setImageDrawable(getResources().getDrawable(R.drawable.sensor_off));

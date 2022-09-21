@@ -10,13 +10,13 @@
         android:id="@+id/imageView10"
         android:layout_width="240dp"
         android:layout_height="240dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:padding="20dp"
         android:src="@drawable/pump"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user" />
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <TextView
         android:id="@+id/textView21"
@@ -25,7 +25,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="16dp"
-        android:text="Hello! "
+        android:text="@string/hello"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -36,7 +36,7 @@
         android:id="@+id/user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="User"
+        android:text="@string/user"
         android:textColor="@color/light_orange"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -44,25 +44,24 @@
         app:layout_constraintTop_toTopOf="@+id/textView21" />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Motor State"
-        android:textColor="@color/black"
-        android:textSize="20sp"
+        android:layout_marginTop="8dp"
+        android:text="@string/control_your_motor_from_here"
+        android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/button_state"
-        app:layout_constraintStart_toStartOf="@+id/imageView10"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+        app:layout_constraintStart_toStartOf="@+id/textView21"
+        app:layout_constraintTop_toBottomOf="@+id/user" />
 
     <ImageView
         android:id="@+id/button_state"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView10"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView23"
+        app:layout_constraintStart_toStartOf="@+id/textView23"
+        app:layout_constraintTop_toBottomOf="@+id/textView23"
         app:srcCompat="@drawable/sensor_off" />
 
     <TextView
@@ -70,26 +69,64 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Motor Speed"
+        android:background="@drawable/button_style"
+        android:padding="8dp"
+        android:text="@string/motor_speed"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/textView23"
-        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+        app:layout_constraintEnd_toStartOf="@+id/textView23"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_style2"
+        android:padding="8dp"
+        android:text="@string/motor_state"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView25"
+        app:layout_constraintEnd_toStartOf="@+id/textView22"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView25"
+        app:layout_constraintTop_toTopOf="@+id/textView25" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_style2"
+        android:padding="8dp"
+        android:text="@string/working_time"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView23"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView23"
+        app:layout_constraintTop_toTopOf="@+id/textView23" />
 
     <TextView
         android:id="@+id/motor_speed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="0"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView25"
-        app:layout_constraintEnd_toEndOf="@+id/button_state"
-        app:layout_constraintTop_toTopOf="@+id/textView25" />
+        app:layout_constraintEnd_toEndOf="@+id/textView25"
+        app:layout_constraintStart_toStartOf="@+id/textView25"
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
     <TextView
+        android:id="@+id/textView30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="%"
@@ -106,7 +143,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="80dp"
         android:background="@drawable/on_button"
-        android:text="On"
+        android:text="@string/on"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/motor_off"
         app:layout_constraintHorizontal_bias="0.5"
@@ -117,7 +154,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/off_button"
-        android:text="Off"
+        android:text="@string/off"
         app:layout_constraintBottom_toBottomOf="@+id/motor_on"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -138,13 +175,13 @@
             android:id="@+id/textView27"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Control Station"
-            android:textColor="@color/lightblue"
-            android:textStyle="bold"
-            android:textSize="28sp"
             android:layout_gravity="center"
-            android:gravity="center"/>
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/control_station"
+            android:textColor="@color/lightblue"
+            android:textSize="28sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <SeekBar
@@ -162,5 +199,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+        app:layout_constraintTop_toBottomOf="@+id/button_state" />
+
+    <TextView
+        android:id="@+id/motor_working_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="06:23"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView22"
+        app:layout_constraintStart_toStartOf="@+id/textView22"
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="H"
+        android:layout_marginStart="4dp"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/motor_working_time"
+        app:layout_constraintStart_toEndOf="@+id/motor_working_time"
+        app:layout_constraintTop_toTopOf="@+id/motor_working_time" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

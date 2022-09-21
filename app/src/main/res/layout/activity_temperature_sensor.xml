@@ -43,7 +43,7 @@
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/black_han_sans"
                 android:gravity="center"
-                android:text="Your Sensor Value"
+                android:text="@string/your_sensor_value"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:text="Signal State"
+                android:text="@string/signal_state"
                 app:layout_constraintBottom_toTopOf="@+id/imageView8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
@@ -114,39 +114,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView5" />
 
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="Soil Moisture Sensor"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view3" />
-
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="240dp"
-        android:layout_height="180dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView18"
-        app:srcCompat="@drawable/temperature_sensor_image" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
@@ -154,18 +126,39 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5">
+        app:layout_constraintTop_toBottomOf="@+id/view3">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="@string/temperature_sensor"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="240dp"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                app:srcCompat="@drawable/temperature_sensor_image" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
                 android:layout_marginBottom="8dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -176,22 +169,22 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="What do Temperature Sensors do?"
                     android:layout_gravity="end"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
                     android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/what_do_temperature_sensor_do"
                     android:textColor="@color/black"
-                    android:layout_marginBottom="8dp"/>
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="8dp"
                 android:text="@string/about_temperature_sensor"
                 android:textAlignment="textStart"
-                android:padding="8dp"
                 android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
