@@ -60,7 +60,7 @@
                 android:fontFamily="@font/black_han_sans"
                 android:text="IS"
                 android:textColor="@color/light_orange"
-                android:textSize="20sp"
+                android:textSize="28sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/textView"
                 app:layout_constraintStart_toEndOf="@+id/textView"
@@ -94,20 +94,20 @@
                 android:id="@+id/notification"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/borderImageCardView"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/setting"
+                app:layout_constraintEnd_toStartOf="@+id/setting"
+                app:layout_constraintTop_toTopOf="@+id/setting"
                 app:srcCompat="@drawable/ic_baseline_notifications_24" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/borderImageCardView"
+                android:id="@+id/setting"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:background="@drawable/user"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/ic_settings"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -141,21 +141,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view2">
-
-
-        <TextView
-            android:id="@+id/select_language"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_gravity="right"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/button_style2"
-            android:gravity="center"
-            android:text="@string/select_language"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/dashboard"

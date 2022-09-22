@@ -24,6 +24,7 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/imageView15"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_margin="8dp"
@@ -38,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/black_han_sans"
@@ -49,7 +50,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imageView15"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView

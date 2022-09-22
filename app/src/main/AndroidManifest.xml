@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartIrrigationSystem">
         <activity
+            android:name=".Activities.SettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.SliderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.TemperatureSensorActivity"
             android:exported="false" />
         <activity
@@ -19,7 +28,7 @@
             android:name=".Activities.MotorActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.MainActivity"
+            android:name=".Activities.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Smart Irrigation System</string>
+    <string name="app_name">Smart IS</string>
 
     <string-array name="English_Languages">
         <item>English</item>
@@ -10,9 +10,6 @@
         <item>ईंग्रजी</item>
         <item>मराठी</item>
     </string-array>
-
-
-
 
 
     <string name="about_moisture_sensor1">The moisture of the soil plays an essential role in the irrigation field as well as in gardens for plants. As nutrients in the soil provide the food to the plants for their growth. Supplying water to the plants is also essential to change the temperature of the plants. The temperature of the plant can be changed with water using the method like transpiration. And plant root systems are also developed better when rising within moist soil. Extreme soil moisture levels can guide to anaerobic situations that can encourage the plant’s growth as well as soil pathogens. This article discusses an overview of the soil moisture sensor, working and it’s applications.</string>
@@ -38,7 +35,14 @@
     <string name="motor_speed">Motor Speed</string>
     <string name="motor_state">Motor State</string>
     <string name="working_time">Working Time</string>
-    <string name="select_language">Language</string>
+    <string name="select_language">Select Language</string>
     <string name="on">On</string>
     <string name="off">Off</string>
+    <string name="save_water">Save water. Save Earth.</string>
+    <string name="water_des">Our app is a one step towards the conservation of water.</string>
+    <string name="save_trees">Save trees, Save nature</string>
+    <string name="trees_des">They give us clean water to drink, air to breathe, shade and food to humans and animals.</string>
+    <string name="english">English</string>
+    <string name="marathi">Marathi</string>
+    <string name="selected_language_will_applied_to_the_whole_app">Selected language will applied to the whole app</string>
 </resources>
