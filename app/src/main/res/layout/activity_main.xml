@@ -270,7 +270,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
                     android:layout_marginRight="4dp"
-                    android:text="6"
+                    android:text="0"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -327,7 +327,7 @@
                     android:id="@+id/rain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="59"
+                    android:text="0"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -352,6 +352,7 @@
             android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/soilMoistureCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -456,6 +457,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/temperatureCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
