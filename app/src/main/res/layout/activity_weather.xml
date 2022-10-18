@@ -1,73 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Activities.WeatherActivity"
     android:background="#e8f4f8"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".Activities.WeatherActivity">
+
     <TextView
+        android:id="@+id/textView38"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:text="@string/weather_report"
+        android:textColor="@color/lightblue"
         android:textSize="40sp"
         android:textStyle="bold"
-        android:textColor="@color/lightblue"
-        android:text="Weather Update"/>
-    <TextView
-        android:id="@+id/allweatherdata"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-        </View>
-        <EditText
-            android:layout_width="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView38">
+
+
+        <TextView
+            android:id="@+id/weather_report"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/etCity"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="Enter City Name"
-            android:inputType="textPersonName" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/etCountry"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="Enter Country Code (Optional)"
-            android:inputType="textPersonName" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnGet"
-            android:layout_marginBottom="10dp"
-            android:background="#0070c7"
-            android:textColor="@android:color/white"
-            android:onClick="getWeatherDetails"
-            android:text="Get"
-            app:backgroundTint="@null" />
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="150dp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvResult" />
-        </ScrollView>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-        </View>
-    </LinearLayout>
-</LinearLayout>
+            android:text="@string/no_report"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="start"
+            android:layout_gravity="start"/>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -38,11 +38,22 @@
     <string name="select_language">Select Language</string>
     <string name="on">On</string>
     <string name="off">Off</string>
-    <string name="save_water">Save water. Save Earth.</string>
-    <string name="water_des">Our app is a one step towards the conservation of water.</string>
-    <string name="save_trees">Save trees, Save nature</string>
-    <string name="trees_des">They give us clean water to drink, air to breathe, shade and food to humans and animals.</string>
+    <string name="save_water">System will automatically water the plants when the soil moisture sensor detects an insufficient amount of moisture in the soil .</string>
+    <string name="water_des">Our app is one step towards the conservation of water.</string>
+    <string name="save_trees">This project has been designed for surveillance of irrigation systems in farms without the need for manual checking of irrigation systems.</string>
+    <string name="trees_des">Automation in irrigation will help to reduce man power.</string>
     <string name="english">English</string>
     <string name="marathi">Marathi</string>
     <string name="selected_language_will_applied_to_the_whole_app">Selected language will applied to the whole app</string>
+    <string name="weather_report">Weather Report</string>
+    <string name="no_report">No weather report generated.</string>
+    <string name="humidity">Humidity</string>
+    <string name="temperature">Temperature</string>
+    <string name="pressure">Pressure</string>
+    <string name="wind_speed">Wind Speed</string>
+    <string name="feels_like">Feels Like</string>
+    <string name="current_weather_of">Current Weather Of</string>
+    <string name="cloudiness">Cloudiness</string>
+    <string name="cloud_description">Cloud Description</string>
+    <string name="meters_per_second">meters per second</string>
 </resources>

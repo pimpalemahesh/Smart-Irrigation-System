@@ -1,11 +1,11 @@
 package com.myinnovation.smartirrigationsystem.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -13,6 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.myinnovation.smartirrigationsystem.R;
 import com.myinnovation.smartirrigationsystem.Utitlity.WeatherApi;
 import com.myinnovation.smartirrigationsystem.databinding.ActivityMainBinding;
 
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         binding.temperatureCardView.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, TemperatureSensorActivity.class)));
         binding.toMotorActivity.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, MotorActivity.class)));
         binding.setting.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, SettingActivity.class)));
-
+        binding.weatherCardView.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, WeatherActivity.class).putExtra("WR", weatherData)));
         WeatherApi api = new WeatherApi("Mumbai", "India", getApplicationContext());
     }
 
@@ -89,16 +90,16 @@ public class MainActivity extends AppCompatActivity {
                                 String countryName = jsonObjectSys.getString("country");
                                 String cityName = jsonResponse.getString("name");
 //                                tvResult.setTextColor(Color.rgb(68, 134, 199));
-                                weatherData += "Current weather of " + cityName + " (" + countryName + ")"
-                                        + "\n Temp: " + df.format(temp) + " °C"
-                                        + "\n Feels Like: " + df.format(feelsLike) + " °C"
-                                        + "\n Humidity: " + humidity + "%"
-                                        + "\n Description: " + description
-                                        + "\n Wind Speed: " + wind + "m/s (meters per second)"
-                                        + "\n Cloudiness: " + clouds + "%"
-                                        + "\n Pressure: " + pressure + " hPa";
+                                weatherData += getResources().getString(R.string.current_weather_of) + " " + cityName + " (" + countryName + ")\n"
+                                        + getResources().getString(R.string.temperature) + " " + df.format(temp) + " °C\n"
+                                        + getResources().getString(R.string.feels_like) + " " + df.format(feelsLike) + " °C\n"
+                                        + getResources().getString(R.string.humidity) + " " + humidity + "%\n"
+                                        + getResources().getString(R.string.cloud_description) + " " + description + "\n"
+                                        + getResources().getString(R.string.wind_speed) + " " + wind + "m/s (" + getResources().getString(R.string.meters_per_second) + ")\n"
+                                        + getResources().getString(R.string.cloudiness) + " " + clouds + "%\n"
+                                        + getResources().getString(R.string.pressure) + " " + pressure + " hPa\n";
 
-                                binding.temperature.setText(String.valueOf(df.format(temp)));
+                                binding.temperature.setText(df.format(temp));
                                 binding.rain.setText(clouds);
                                 binding.wind.setText(wind);
                             } catch (JSONException e) {

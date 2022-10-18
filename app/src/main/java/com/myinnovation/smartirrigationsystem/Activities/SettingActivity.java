@@ -2,6 +2,7 @@ package com.myinnovation.smartirrigationsystem.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
@@ -22,24 +23,17 @@ public class SettingActivity extends AppCompatActivity {
         binding = ActivitySettingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.language.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId){
-                    case R.id.english:
-                        setLocale("en");
-                        recreate();
-                        break;
+        binding.language.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId){
+                case R.id.english:
+                    setLocale("en");
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    break;
 
-                    case R.id.marathi:
-                        setLocale("mr");
-                        recreate();
-                        break;
-
-                    default:
-                        setLocale("en");
-                        recreate();
-                }
+                case R.id.marathi:
+                    setLocale("mr");
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    break;
             }
         });
     }
