@@ -227,4 +227,32 @@
         app:layout_constraintStart_toEndOf="@+id/motor_working_time"
         app:layout_constraintTop_toTopOf="@+id/motor_working_time" />
 
+    <TextView
+        android:id="@+id/sid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="NULL"
+        android:textColor="@color/lightblue"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView41"
+        app:layout_constraintStart_toEndOf="@+id/textView41"
+        app:layout_constraintTop_toTopOf="@+id/textView41" />
+
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:text="Sensor Id"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/green"
+        app:layout_constraintBottom_toBottomOf="@+id/user"
+        app:layout_constraintStart_toEndOf="@+id/user"
+        app:layout_constraintTop_toTopOf="@+id/user" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

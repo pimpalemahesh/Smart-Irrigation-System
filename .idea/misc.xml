@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/Smart-Irrigation-System/app/src/main/res/layout/activity_all_moisture_sensor.xml" value="0.25416666666666665" />
         <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/Smart-Irrigation-System/app/src/main/res/layout/activity_main.xml" value="0.25025641025641027" />
+        <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/Smart-Irrigation-System/app/src/main/res/layout/activity_moisture_sensor_info.xml" value="0.25416666666666665" />
+        <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/Smart-Irrigation-System/app/src/main/res/layout/activity_motor.xml" value="0.25416666666666665" />
         <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/Smart-Irrigation-System/app/src/main/res/layout/activity_weather.xml" value="0.25025641025641027" />
+        <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/Smart-Irrigation-System/app/src/main/res/layout/single_moisture_sensor_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/app/src/main/res/drawable/button_style.xml" value="0.2595" />
         <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/app/src/main/res/drawable/button_style2.xml" value="0.2595" />
         <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.2595" />

@@ -15,12 +15,19 @@ import com.myinnovation.smartirrigationsystem.databinding.ActivityMotorBinding;
 public class MotorActivity extends AppCompatActivity {
 
     ActivityMotorBinding binding;
+    private String sensorId = "NULL";
     private boolean motorState = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMotorBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        if(getIntent() != null){
+            sensorId = getIntent().getStringExtra("SID");
+            binding.sid.setText(sensorId);
+        }
+
         binding.motorSpeedSeekbar.setProgress(Integer.parseInt(binding.motorSpeed.getText().toString()));
         if(motorState){
             binding.motorSpeedSeekbar.setEnabled(true);

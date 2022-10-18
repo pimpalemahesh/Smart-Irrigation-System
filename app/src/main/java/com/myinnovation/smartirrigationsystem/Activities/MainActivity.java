@@ -47,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
         binding.soilMoistureCardView.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, MoistureSensorActivity.class)));
         binding.temperatureCardView.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, TemperatureSensorActivity.class)));
-        binding.toMotorActivity.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, MotorActivity.class)));
+
+        binding.toMotorActivity.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, AllMoistureSensorActivity.class)));
         binding.setting.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, SettingActivity.class)));
         binding.weatherCardView.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, WeatherActivity.class).putExtra("WR", weatherData)));
         WeatherApi api = new WeatherApi("Mumbai", "India", getApplicationContext());
@@ -120,5 +121,7 @@ public class MainActivity extends AppCompatActivity {
     private void showToast(String str) {
         Toast.makeText(this, str, Toast.LENGTH_LONG).show();
     }
+
+
 
 }

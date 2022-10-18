@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartIrrigationSystem">
         <activity
+            android:name=".Activities.AllMoistureSensorActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.WeatherActivity"
             android:exported="false" />
         <activity
