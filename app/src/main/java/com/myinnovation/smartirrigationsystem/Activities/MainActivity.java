@@ -40,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         requestQueue = Volley.newRequestQueue(getApplicationContext());
-        getWeatherDetails();
+        weatherThread thread = new weatherThread();
+        thread.start();
+        
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
@@ -54,6 +56,13 @@ public class MainActivity extends AppCompatActivity {
         WeatherApi api = new WeatherApi("Mumbai", "India", getApplicationContext());
     }
 
+    private class weatherThread extends Thread{
+
+        @Override
+        public void run() {
+            getWeatherDetails();
+        }
+    }
     public void getWeatherDetails(){
         String tempUrl = "";
         String city = "Sangli";

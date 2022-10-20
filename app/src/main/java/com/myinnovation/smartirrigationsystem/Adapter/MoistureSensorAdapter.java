@@ -38,13 +38,17 @@ public class MoistureSensorAdapter extends RecyclerView.Adapter<MoistureSensorAd
         MoistureSensorModel sensor = List.get(position);
         holder.binding.sensorId.setText(sensor.getSensorId());
         holder.binding.sensorValue.setText(sensor.getSensorValue());
-        if(sensor.getState()){
+        if(sensor.getState() && Integer.parseInt(sensor.getSensorValue()) < 15){
             holder.binding.sensorState.setImageResource(R.drawable.sensor_on);
-            holder.binding.cardView3.setCardBackgroundColor(context.getResources().getColor(R.color.lightblue));
-        } else{
+            holder.binding.cardView3.setCardBackgroundColor(context.getResources().getColor(R.color.yellow));
+        } else if(sensor.getState()){
+            holder.binding.sensorState.setImageResource(R.drawable.sensor_on);
+            holder.binding.cardView3.setCardBackgroundColor(context.getResources().getColor(R.color.green));
+        }
+        else{
             holder.binding.sensorState.setImageResource(R.drawable.sensor_off);
             holder.binding.sensorValue.setText("0");
-            holder.binding.cardView3.setCardBackgroundColor(context.getResources().getColor(R.color.light_orange));
+            holder.binding.cardView3.setCardBackgroundColor(context.getResources().getColor(R.color.red));
         }
 
         holder.itemView.setOnClickListener(v -> {
