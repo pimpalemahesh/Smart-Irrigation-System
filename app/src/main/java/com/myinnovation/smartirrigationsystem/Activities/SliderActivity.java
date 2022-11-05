@@ -32,24 +32,24 @@ public class SliderActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        final String[] languages = {"English", "Marathi"};
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
-        mBuilder.setTitle("Select Language");
-
-        mBuilder.setSingleChoiceItems(languages, -1, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (which == 0) {
-                    setLocale("en");
-                    dialog.dismiss();
-                } else {
-                    setLocale("mr");
-                    dialog.dismiss();
-                }
-            }
-        });
-        AlertDialog dialog = mBuilder.create();
-        dialog.show();
+//        final String[] languages = {"English", "Marathi"};
+//        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+//        mBuilder.setTitle("Select Language");
+//
+//        mBuilder.setSingleChoiceItems(languages, -1, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                if (which == 0) {
+//                    setLocale("en");
+//                    dialog.dismiss();
+//                } else {
+//                    setLocale("mr");
+//                    dialog.dismiss();
+//                }
+//            }
+//        });
+//        AlertDialog dialog = mBuilder.create();
+//        dialog.show();
 
 
         layouts = new int[] {
@@ -66,7 +66,7 @@ public class SliderActivity extends AppCompatActivity {
                 if(binding.pager.getCurrentItem()+1 < layouts.length){
                     binding.pager.setCurrentItem(binding.pager.getCurrentItem()+1);
                 }else {
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    startActivity(new Intent(getApplicationContext(),RegisterActivity.class));
                 }
             }
         });
@@ -92,23 +92,23 @@ public class SliderActivity extends AppCompatActivity {
             }
         });
     }
-
-    private void setLocale(String language) {
-        Locale locale = new Locale(language, "IN");
-        Locale.setDefault(locale);
-        Configuration config = this.getResources().getConfiguration();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            config.setLocale(locale);
-        } else{
-            config.locale = locale;
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            createConfigurationContext(config);
-        }
-        this.getResources().updateConfiguration(config, this.getResources().getDisplayMetrics());
-
-        SharedPreferences.Editor editor = getSharedPreferences("SETTINGS", MODE_PRIVATE).edit();
-        editor.putString("LANG", language);
-        editor.apply();
-    }
+//
+//    private void setLocale(String language) {
+//        Locale locale = new Locale(language, "IN");
+//        Locale.setDefault(locale);
+//        Configuration config = this.getResources().getConfiguration();
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+//            config.setLocale(locale);
+//        } else{
+//            config.locale = locale;
+//        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+//            createConfigurationContext(config);
+//        }
+//        this.getResources().updateConfiguration(config, this.getResources().getDisplayMetrics());
+//
+//        SharedPreferences.Editor editor = getSharedPreferences("SETTINGS", MODE_PRIVATE).edit();
+//        editor.putString("LANG", language);
+//        editor.apply();
+//    }
 }
