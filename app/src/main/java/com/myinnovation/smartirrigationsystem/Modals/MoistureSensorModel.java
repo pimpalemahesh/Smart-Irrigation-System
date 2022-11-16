@@ -1,10 +1,11 @@
 package com.myinnovation.smartirrigationsystem.Modals;
 
 public class MoistureSensorModel {
-    private String sensorId, sensorValue;
+    private String sensorId;
+    int sensorValue;
     private Boolean state;
 
-    public MoistureSensorModel(String sensorId, String sensorValue, Boolean state) {
+    public MoistureSensorModel(String sensorId, int sensorValue, Boolean state) {
         this.sensorId = sensorId;
         this.sensorValue = sensorValue;
         this.state = state;
@@ -21,11 +22,11 @@ public class MoistureSensorModel {
         this.sensorId = sensorId;
     }
 
-    public String getSensorValue() {
+    public int getSensorValue() {
         return sensorValue;
     }
 
-    public void setSensorValue(String sensorValue) {
+    public void setSensorValue(int sensorValue) {
         this.sensorValue = sensorValue;
     }
 

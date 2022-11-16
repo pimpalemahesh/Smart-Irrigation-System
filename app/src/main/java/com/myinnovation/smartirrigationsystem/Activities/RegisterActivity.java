@@ -16,9 +16,6 @@ import com.myinnovation.smartirrigationsystem.databinding.ActivityRegisterBindin
 public class RegisterActivity extends AppCompatActivity {
 
     ActivityRegisterBinding binding;
-    private String username = "", mobile = "";
-    private FirebaseAuth mAuth;
-    private FirebaseDatabase mbase;
 
 
     @Override
@@ -31,26 +28,34 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void validateFieldsForSignUp() {
-        username = binding.name.getText().toString();
-        mobile = binding.mobNum.getText().toString();
 
-        if (TextUtils.isEmpty(mobile)) {
+        if (TextUtils.isEmpty(binding.mobNum.getText().toString())) {
             binding.mobNum.setError("Required");
             return;
-        } else if (!Patterns.PHONE.matcher(mobile).matches()) {
+        } else if (!Patterns.PHONE.matcher(binding.mobNum.getText().toString()).matches()) {
             Toast.makeText(this, "Wrong Mobile Number", Toast.LENGTH_LONG).show();
             return;
-        } else if (mobile.length() != 10) {
+        } else if (binding.mobNum.getText().toString().length() != 10) {
             Toast.makeText(this, "Mobile Length should be 10 only.", Toast.LENGTH_LONG).show();
             return;
         }
+//        else if(binding.password.getText().toString().length() < 8){
+//            binding.password.setError("Password length should be greater than or equal to 8");
+//            return;
+//        } else if(!binding.password.getText().toString().equals(binding.cpassword.getText().toString())){
+//            binding.password.setError("Password not matched write again!");
+//            binding.password.setText("");
+//            binding.cpassword.setText("");
+//            return;
+//        }
         registerUser();
     }
 
     private void registerUser() {
         Intent intent = new Intent(RegisterActivity.this, OTPVerificationActivity.class);
-        intent.putExtra("USERNAME", username);
-        intent.putExtra("MOBILE", mobile);
+        intent.putExtra("USERNAME", binding.name.getText().toString());
+        intent.putExtra("MOBILE", binding.mobNum.getText().toString());
+        intent.putExtra("PASSWORD", "123456789");
         startActivity(intent);
     }
 }

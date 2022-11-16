@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.myinnovation.smartirrigationsystem">
+    package="com.myinnovation.smartirrigationsystem" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,12 +10,12 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SmartIrrigationSystem">
+        android:theme="@style/Theme.SmartIrrigationSystem" >
         <activity
-            android:name=".Activities.OTPVerificationActivity"
+            android:name=".Activities.MyNotificationActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.LoginActivity"
+            android:name=".Activities.OTPVerificationActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.RegisterActivity"
@@ -36,17 +36,22 @@
             android:name=".Activities.MainActivity"
             android:exported="false" />
         <activity
+            android:name=".Activities.MoistureSensorInfoActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.TemperatureSensorActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.MoistureSensorActivity"
-            android:exported="false" />
+            android:name=".Activities.AddMoistureSensorActivity"
+            android:exported="false"
+            android:parentActivityName=".Activities.MainActivity" />
         <activity
             android:name=".Activities.MotorActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Activities.MainActivity" />
         <activity
             android:name=".Activities.SplashScreen"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

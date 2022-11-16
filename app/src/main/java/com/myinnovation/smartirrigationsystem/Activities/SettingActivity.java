@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.widget.RadioGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.myinnovation.smartirrigationsystem.R;
 import com.myinnovation.smartirrigationsystem.databinding.ActivitySettingBinding;
 
@@ -23,6 +24,10 @@ public class SettingActivity extends AppCompatActivity {
         binding = ActivitySettingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.logout.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getApplicationContext(), RegisterActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK));
+        });
         binding.language.setOnCheckedChangeListener((group, checkedId) -> {
             switch (checkedId){
                 case R.id.english:

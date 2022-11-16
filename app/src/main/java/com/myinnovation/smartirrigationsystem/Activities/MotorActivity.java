@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +29,8 @@ public class MotorActivity extends AppCompatActivity {
     private String sensorId = "NULL";
     private boolean motorState = false;
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private String uid = mAuth.getUid();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +43,11 @@ public class MotorActivity extends AppCompatActivity {
             binding.sid.setText(sensorId);
         }
 
-        reference.child("MOTOR").addValueEventListener(new ValueEventListener() {
+        reference.child("Users").child(uid).child("MOTOR").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    reference.child("MOTOR").child("state").addListenerForSingleValueEvent(new ValueEventListener() {
+                    reference.child("Users").child(uid).child("MOTOR").child("state").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.exists()) {
@@ -56,7 +59,7 @@ public class MotorActivity extends AppCompatActivity {
                                 } else {
                                     binding.motorSpeedSeekbar.setEnabled(true);
                                     binding.buttonState.setImageDrawable(getResources().getDrawable(R.drawable.sensor_on));
-                                    reference.child("MOTOR").child("time").addListenerForSingleValueEvent(new ValueEventListener() {
+                                    reference.child("Users").child(uid).child("MOTOR").child("time").addListenerForSingleValueEvent(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                                             if(snapshot.exists()){
@@ -72,7 +75,7 @@ public class MotorActivity extends AppCompatActivity {
                                     });
                                 }
 
-                                reference.child("MOTOR").child("speed").addListenerForSingleValueEvent(new ValueEventListener() {
+                                reference.child("Users").child(uid).child("MOTOR").child("speed").addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         if(snapshot.exists()){
@@ -98,7 +101,7 @@ public class MotorActivity extends AppCompatActivity {
 
                                     @Override
                                     public void onStopTrackingTouch(SeekBar seekBar) {
-                                        reference.child("MOTOR").child("speed").setValue(seekBar.getProgress()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        reference.child("Users").child(uid).child("MOTOR").child("speed").setValue(seekBar.getProgress()).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void unused) {
                                                 showToast("Speed changed");
@@ -116,7 +119,7 @@ public class MotorActivity extends AppCompatActivity {
                                     if (motorState) {
                                         return;
                                     } else {
-                                        reference.child("MOTOR").child("state").setValue(true).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        reference.child("Users").child(uid).child("MOTOR").child("state").setValue(true).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void unused) {
                                                 binding.motorSpeedSeekbar.setEnabled(true);
@@ -137,13 +140,13 @@ public class MotorActivity extends AppCompatActivity {
                                     if (!motorState) {
                                         return;
                                     } else{
-                                        reference.child("MOTOR").child("state").setValue(false).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        reference.child("Users").child(uid).child("MOTOR").child("state").setValue(false).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void unused) {
-                                                reference.child("MOTOR").child("speed").setValue(0).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                reference.child("Users").child(uid).child("MOTOR").child("speed").setValue(0).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
                                                     public void onSuccess(Void unused) {
-                                                        reference.child("MOTOR").child("time").setValue("00").addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        reference.child("Users").child(uid).child("MOTOR").child("time").setValue("00").addOnSuccessListener(new OnSuccessListener<Void>() {
                                                             @Override
                                                             public void onSuccess(Void unused) {
                                                                 binding.motorSpeedSeekbar.setEnabled(false);

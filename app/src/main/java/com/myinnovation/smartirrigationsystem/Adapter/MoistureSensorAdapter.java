@@ -9,11 +9,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.myinnovation.smartirrigationsystem.Activities.MainActivity;
 import com.myinnovation.smartirrigationsystem.Activities.MotorActivity;
 import com.myinnovation.smartirrigationsystem.Modals.MoistureSensorModel;
 import com.myinnovation.smartirrigationsystem.R;
-import com.myinnovation.smartirrigationsystem.databinding.ActivityMotorBinding;
 import com.myinnovation.smartirrigationsystem.databinding.SingleMoistureSensorLayoutBinding;
 
 import java.util.ArrayList;
@@ -37,23 +35,26 @@ public class MoistureSensorAdapter extends RecyclerView.Adapter<MoistureSensorAd
     public void onBindViewHolder(@NonNull MoistureSensorViewHolder holder, int position) {
         MoistureSensorModel sensor = List.get(position);
         holder.binding.sensorId.setText(sensor.getSensorId());
-        holder.binding.sensorValue.setText(sensor.getSensorValue());
-        if(sensor.getState() && Integer.parseInt(sensor.getSensorValue()) < 15){
-            holder.binding.sensorState.setImageResource(R.drawable.sensor_on);
-            holder.binding.cardView3.setCardBackgroundColor(context.getResources().getColor(R.color.yellow));
-        } else if(sensor.getState()){
-            holder.binding.sensorState.setImageResource(R.drawable.sensor_on);
-            holder.binding.cardView3.setCardBackgroundColor(context.getResources().getColor(R.color.green));
-        }
-        else{
-            holder.binding.sensorState.setImageResource(R.drawable.sensor_off);
-            holder.binding.sensorValue.setText("0");
-            holder.binding.cardView3.setCardBackgroundColor(context.getResources().getColor(R.color.red));
+        holder.binding.sensorValue.setText(String.valueOf(sensor.getSensorValue()));
+        if(sensor.getState() != null){
+            if(sensor.getState() && sensor.getSensorValue() < 15){
+                holder.binding.sensorState.setImageResource(R.drawable.sensor_on);
+                holder.binding.cardView3.setCardBackgroundColor(context.getResources().getColor(R.color.yellow));
+            } else if(sensor.getState()){
+                holder.binding.sensorState.setImageResource(R.drawable.sensor_on);
+                holder.binding.cardView3.setCardBackgroundColor(context.getResources().getColor(R.color.green));
+            }
+            else{
+                holder.binding.sensorState.setImageResource(R.drawable.sensor_off);
+                holder.binding.sensorValue.setText("0");
+                holder.binding.cardView3.setCardBackgroundColor(context.getResources().getColor(R.color.red));
+            }
+
+            holder.itemView.setOnClickListener(v -> {
+                context.startActivity(new Intent(context, MotorActivity.class).putExtra("SID", sensor.getSensorId()));
+            });
         }
 
-        holder.itemView.setOnClickListener(v -> {
-            context.startActivity(new Intent(context, MotorActivity.class).putExtra("SID", sensor.getSensorId()));
-        });
     }
 
     @Override

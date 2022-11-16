@@ -1,10 +1,12 @@
 package com.myinnovation.smartirrigationsystem.Activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.hardware.Sensor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -13,18 +15,18 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.myinnovation.smartirrigationsystem.Modals.MoistureSensorModel;
 import com.myinnovation.smartirrigationsystem.Modals.User;
-import com.myinnovation.smartirrigationsystem.R;
 import com.myinnovation.smartirrigationsystem.databinding.ActivityOtpverificationBinding;
 
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class OTPVerificationActivity extends AppCompatActivity {
@@ -32,12 +34,12 @@ public class OTPVerificationActivity extends AppCompatActivity {
     ActivityOtpverificationBinding binding;
 
     private String verificationID = "";
-    private String username = "", mobile = "";
+    private String username = "", mobile = "", password;
     private FirebaseAuth mAuth;
     private String userOTP = "";
     private ProgressDialog dialog, pd;
 
-    private FirebaseDatabase mbase;
+    private DatabaseReference mBase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,7 +163,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
 
     private void InitializeFields() {
         mAuth = FirebaseAuth.getInstance();
-        mbase = FirebaseDatabase.getInstance();
+        mBase = FirebaseDatabase.getInstance().getReference();
 
         dialog = new ProgressDialog(this);
         dialog.setTitle("Please Wait!");
@@ -173,6 +175,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
         if (getIntent() != null) {
             username = getIntent().getStringExtra("USERNAME");
             mobile = getIntent().getStringExtra("MOBILE");
+            password = getIntent().getStringExtra("PASSWORD");
         }
     }
 
@@ -248,15 +251,40 @@ public class OTPVerificationActivity extends AppCompatActivity {
     } 
 
     private void saveUserDetail() {
-        User user = new User(mAuth.getUid(), username, mobile);
-
-        FirebaseDatabase.getInstance().getReference().child("Users").child("Detail").setValue(user)
+        User user = new User(mAuth.getUid(), username, mobile, password);
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Wait");
+        alertDialog.setTitle("New user is creating...");
+        alertDialog.show();
+        mBase.child("Users").child(mAuth.getUid()).child("Detail").setValue(user)
                 .addOnCompleteListener(task1 -> {
                     if (task1.isSuccessful()) {
-                        Toast.makeText(getApplicationContext(), "User Created", Toast.LENGTH_SHORT).show();
+                        mBase.child("AllUsers").child(mAuth.getUid()).setValue(username).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                mBase.child("AllUsers").child(username).setValue(password).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        MoistureSensorModel sensor = new MoistureSensorModel("1001", 0, false);
+                                        mBase.child("Users").child(mAuth.getUid()).child("SENSORS").child("1001").setValue(sensor).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                mBase.child("Users").child(mAuth.getUid()).child("MOTOR").child("speed").setValue(0);
+                                                mBase.child("Users").child(mAuth.getUid()).child("MOTOR").child("state").setValue(false);
+                                                mBase.child("Users").child(mAuth.getUid()).child("MOTOR").child("time").setValue("00");
+                                                alertDialog.dismiss();
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        });
                     }
                 })
-                .addOnFailureListener(e -> Toast.makeText(getApplicationContext(), "Unable to create user" + e.getMessage(), Toast.LENGTH_LONG).show());
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getApplicationContext(), "Unable to create user" + e.getMessage(), Toast.LENGTH_LONG).show();
+                    alertDialog.dismiss();
+                });
 
     }
 
