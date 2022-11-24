@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:fontFamily="@font/black_han_sans"
+                android:fontFamily="@font/oswald"
                 android:text="IS"
                 android:textColor="@color/light_orange"
                 android:textSize="28sp"
@@ -150,6 +150,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/dashboard"
+            android:fontFamily="@font/oswald"
             android:textColor="@color/lightblue"
             android:textSize="28dp"
             android:textStyle="bold" />
@@ -163,6 +164,7 @@
             android:text="@string/weather_forecast"
             android:textColor="@color/black"
             android:textSize="18sp"
+            android:fontFamily="@font/oswald"
             android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
@@ -197,6 +199,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:text="@string/today"
+                    android:fontFamily="@font/oswald"
                     android:textColor="@color/green"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -350,6 +353,7 @@
             android:text="@string/sensor_values"
             android:textColor="@color/black"
             android:textSize="18sp"
+            android:fontFamily="@font/oswald"
             android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
@@ -394,11 +398,11 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:inputType="textMultiLine"
                     android:text="@string/soil_sensor_intro"
                     android:textColor="@color/lightblue"
                     android:textSize="16dp"
                     android:textStyle="bold"
+                    android:fontFamily="@font/oswald"
                     app:layout_constraintEnd_toStartOf="@+id/toSoilMoistureSensorActivity"
                     app:layout_constraintStart_toEndOf="@+id/cardView2"
                     app:layout_constraintTop_toTopOf="@+id/cardView2" />
@@ -423,7 +427,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:padding="2dp"
-                    android:text="40"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -510,7 +514,7 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:inputType="textMultiLine"
+                    android:fontFamily="@font/oswald"
                     android:text="@string/temperature_sensor_intro"
                     android:textColor="@color/light_orange"
                     android:textSize="16dp"
@@ -539,7 +543,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:padding="2dp"
-                    android:text="20"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -558,6 +562,43 @@
                     app:layout_constraintBottom_toBottomOf="@+id/temperature_sensor_value"
                     app:layout_constraintStart_toEndOf="@+id/temperature_sensor_value"
                     app:layout_constraintTop_toTopOf="@+id/temperature_sensor_value" />
+
+                <TextView
+                    android:id="@+id/humidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:text="Humidity"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/oswald"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView26"
+                    app:layout_constraintStart_toEndOf="@+id/textView26"
+                    app:layout_constraintTop_toTopOf="@+id/textView26" />
+
+                <TextView
+                    android:id="@+id/humidity_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:text=""
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/humidity"
+                    app:layout_constraintStart_toEndOf="@+id/humidity"
+                    app:layout_constraintTop_toTopOf="@+id/humidity" />
+
+                <TextView
+                    android:id="@+id/textView46"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="%"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/humidity_value"
+                    app:layout_constraintStart_toEndOf="@+id/humidity_value"
+                    app:layout_constraintTop_toTopOf="@+id/humidity_value" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

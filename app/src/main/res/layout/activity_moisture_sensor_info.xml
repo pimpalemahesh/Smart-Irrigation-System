@@ -33,6 +33,7 @@
                 android:layout_gravity="center"
                 android:text="@string/soil_moisture_sensor"
                 android:textColor="@color/black"
+                android:fontFamily="@font/oswald"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -77,6 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
+                android:fontFamily="@font/oswald"
                 android:text="@string/about_moisture_sensor1"
                 android:textAlignment="textStart"
                 android:textSize="16sp" />
@@ -110,6 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
+                android:fontFamily="@font/oswald"
                 android:text="@string/what_soil_sensor"
                 android:textAlignment="textStart"
                 android:textSize="16sp" />

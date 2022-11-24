@@ -1,13 +1,12 @@
 package com.myinnovation.smartirrigationsystem.Modals;
 
 public class User {
-    private String userId, userName, userMobileNumber, password;
+    private String userId, userName, userMobileNumber;
 
-    public User(String userId, String userName, String userMobileNumber, String password) {
+    public User(String userId, String userName, String userMobileNumber) {
         this.userId = userId;
         this.userName = userName;
         this.userMobileNumber = userMobileNumber;
-        this.password = password;
     }
 
     public User() {
@@ -35,13 +34,5 @@ public class User {
 
     public void setUserMobileNumber(String userMobileNumber) {
         this.userMobileNumber = userMobileNumber;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

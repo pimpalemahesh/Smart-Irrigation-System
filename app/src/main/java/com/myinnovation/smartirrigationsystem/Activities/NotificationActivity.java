@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -32,33 +33,53 @@ public class NotificationActivity extends AppCompatActivity {
         binding = ActivityNotificationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-//        List.add(new Notification("101", "Soil moisture at sensor 101 is reduced to great extent motor is started", "WARNING"));
-//        List.add(new Notification("102", "Sensor 103 is switch offed check it!", "DANGER"));
-//        List.add(new Notification("103", "Motor started.", "SIMPLE"));
-//        List.add(new Notification("104", "Motor stopped.", "DANGER"));
-//
-
-        reference.child("Users").child(mAuth.getUid()).child("Notification").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        List.add(dataSnapshot.getValue(Notification.class));
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                List.add(new Notification("404", error.getMessage(), "DANGER"));
-            }
-        });
+        List.add(new Notification("101", "Soil moisture at sensor 101 is reduced to great extent motor is started", "WARNING"));
+        List.add(new Notification("102", "Sensor 103 is switch offed check it!", "WARNING"));
+        List.add(new Notification("103", "Motor started.", "SIMPLE"));
+        List.add(new Notification("104", "Motor stopped.", "DANGER"));
 
         NotificationAdapter adapter = new NotificationAdapter(List, getApplicationContext());
         binding.notificationRclv.setAdapter(adapter);
-        binding.notificationRclv.setLayoutManager(new LinearLayoutManager(this));
+        binding.notificationRclv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         binding.notificationRclv.setHasFixedSize(true);
         binding.notificationRclv.setNestedScrollingEnabled(false);
 
+    }
+
+    private class FirebaseThread extends Thread{
+
+        @Override
+        public void run() {
+            reference.child("Users").child(mAuth.getUid()).child("Notification").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            Toast.makeText(getApplicationContext(), dataSnapshot.getKey(), Toast.LENGTH_SHORT).show();
+                            List.add(dataSnapshot.getValue(Notification.class));
+                        }
+                    } else{
+                        Toast.makeText(getApplicationContext(), "No Notifications", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                    List.add(new Notification("404", error.getMessage(), "DANGER"));
+                }
+            });
+
+            if(List.size() == 0){
+                List.add(new Notification("11011", "No Notifications", "SIMPLE"));
+            }
+            Toast.makeText(getApplicationContext(), String.valueOf(List.size()), Toast.LENGTH_SHORT).show();
+
+            NotificationAdapter adapter = new NotificationAdapter(List, getApplicationContext());
+            binding.notificationRclv.setAdapter(adapter);
+            binding.notificationRclv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+            binding.notificationRclv.setHasFixedSize(true);
+            binding.notificationRclv.setNestedScrollingEnabled(false);
+        }
     }
 }

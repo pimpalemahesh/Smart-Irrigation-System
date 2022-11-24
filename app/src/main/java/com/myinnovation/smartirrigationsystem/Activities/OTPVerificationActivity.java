@@ -34,7 +34,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
     ActivityOtpverificationBinding binding;
 
     private String verificationID = "";
-    private String username = "", mobile = "", password;
+    private String username = "", mobile = "";
     private FirebaseAuth mAuth;
     private String userOTP = "";
     private ProgressDialog dialog, pd;
@@ -175,7 +175,6 @@ public class OTPVerificationActivity extends AppCompatActivity {
         if (getIntent() != null) {
             username = getIntent().getStringExtra("USERNAME");
             mobile = getIntent().getStringExtra("MOBILE");
-            password = getIntent().getStringExtra("PASSWORD");
         }
     }
 
@@ -213,6 +212,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
             dialog.dismiss();
             Toast.makeText(OTPVerificationActivity.this, "OTP is successfully sent check your inbox", Toast.LENGTH_LONG).show();
             binding.verifyOtp.setEnabled(true);
+            dialog.dismiss();
             binding.bar.setVisibility(View.INVISIBLE);
         }
     };
@@ -251,7 +251,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
     } 
 
     private void saveUserDetail() {
-        User user = new User(mAuth.getUid(), username, mobile, password);
+        User user = new User(mAuth.getUid(), username, mobile);
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle("Wait");
         alertDialog.setTitle("New user is creating...");
@@ -262,19 +262,14 @@ public class OTPVerificationActivity extends AppCompatActivity {
                         mBase.child("AllUsers").child(mAuth.getUid()).setValue(username).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                mBase.child("AllUsers").child(username).setValue(password).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                MoistureSensorModel sensor = new MoistureSensorModel("1001", 0, false);
+                                mBase.child("Users").child(mAuth.getUid()).child("SENSORS").child("1001").setValue(sensor).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        MoistureSensorModel sensor = new MoistureSensorModel("1001", 0, false);
-                                        mBase.child("Users").child(mAuth.getUid()).child("SENSORS").child("1001").setValue(sensor).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void unused) {
-                                                mBase.child("Users").child(mAuth.getUid()).child("MOTOR").child("speed").setValue(0);
-                                                mBase.child("Users").child(mAuth.getUid()).child("MOTOR").child("state").setValue(false);
-                                                mBase.child("Users").child(mAuth.getUid()).child("MOTOR").child("time").setValue("00");
-                                                alertDialog.dismiss();
-                                            }
-                                        });
+                                        mBase.child("Users").child(mAuth.getUid()).child("MOTOR").child("speed").setValue(0);
+                                        mBase.child("Users").child(mAuth.getUid()).child("MOTOR").child("state").setValue(false);
+                                        mBase.child("Users").child(mAuth.getUid()).child("MOTOR").child("time").setValue("00");
+                                        alertDialog.dismiss();
                                     }
                                 });
                             }

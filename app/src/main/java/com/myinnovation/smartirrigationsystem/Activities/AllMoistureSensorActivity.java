@@ -62,10 +62,6 @@ public class AllMoistureSensorActivity extends AppCompatActivity {
                         if(snapshot.exists()){
                             for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                                 List.add(dataSnapshot.getValue(MoistureSensorModel.class));
-                                adapter = new MoistureSensorAdapter(List, getApplicationContext());
-                                binding.allSensorRclv.setAdapter(adapter);
-                                binding.allSensorRclv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                                binding.allSensorRclv.setHasFixedSize(true);
                             }
                         }
                     }
@@ -78,6 +74,11 @@ public class AllMoistureSensorActivity extends AppCompatActivity {
             } catch (Exception e){
                 Toast.makeText(AllMoistureSensorActivity.this, "Error 404 " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
+
+            adapter = new MoistureSensorAdapter(List, getApplicationContext());
+            binding.allSensorRclv.setAdapter(adapter);
+            binding.allSensorRclv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+            binding.allSensorRclv.setHasFixedSize(true);
 
         }
     }

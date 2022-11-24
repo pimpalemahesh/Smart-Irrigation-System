@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartIrrigationSystem" >
         <activity
-            android:name=".Activities.MyNotificationActivity"
+            android:name=".Activities.NotificationActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.OTPVerificationActivity"

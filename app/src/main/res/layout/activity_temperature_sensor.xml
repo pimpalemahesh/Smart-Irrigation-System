@@ -25,8 +25,8 @@
 
             <ImageView
                 android:id="@+id/imageView15"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_margin="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +42,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:fontFamily="@font/black_han_sans"
+                android:fontFamily="@font/oswald"
                 android:gravity="center"
                 android:text="@string/your_sensor_value"
                 android:textColor="@color/black"
@@ -54,28 +54,42 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/temperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="40.07"
+                android:fontFamily="@font/oswald"
+                android:text="Temperature"
                 android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@+id/textView12"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
             <TextView
+                android:id="@+id/temp_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 android:gravity="center"
-                android:text="%"
+                android:text=""
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView15"
-                app:layout_constraintStart_toEndOf="@+id/textView15"
-                app:layout_constraintTop_toTopOf="@+id/textView15" />
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/temperature"
+                app:layout_constraintStart_toEndOf="@+id/temperature"
+                app:layout_constraintTop_toTopOf="@+id/temperature" />
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="°C"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/temp_value"
+                app:layout_constraintStart_toEndOf="@+id/temp_value"
+                app:layout_constraintTop_toTopOf="@+id/temp_value" />
 
             <ImageView
                 android:id="@+id/imageView8"
@@ -94,9 +108,39 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:text="@string/signal_state"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/oswald"
                 app:layout_constraintBottom_toTopOf="@+id/imageView8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/oswald"
+                android:text="Humidity"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/temperature"
+                app:layout_constraintTop_toBottomOf="@+id/temperature" />
+
+            <TextView
+                android:id="@+id/humidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textView15"
+                app:layout_constraintStart_toEndOf="@+id/textView15"
+                app:layout_constraintTop_toTopOf="@+id/textView15" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
@@ -140,6 +184,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:gravity="center"
+                android:fontFamily="@font/oswald"
                 android:layout_gravity="center"
                 android:text="@string/temperature_sensor"
                 android:textColor="@color/black"
@@ -173,6 +218,7 @@
                     android:layout_gravity="end"
                     android:layout_marginStart="8dp"
                     android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/oswald"
                     android:text="@string/what_do_temperature_sensor_do"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -184,6 +230,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
+                android:fontFamily="@font/oswald"
                 android:text="@string/about_temperature_sensor"
                 android:textAlignment="textStart"
                 android:textSize="16sp" />

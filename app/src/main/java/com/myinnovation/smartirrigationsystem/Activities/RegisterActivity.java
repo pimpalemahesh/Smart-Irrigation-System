@@ -39,15 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Mobile Length should be 10 only.", Toast.LENGTH_LONG).show();
             return;
         }
-//        else if(binding.password.getText().toString().length() < 8){
-//            binding.password.setError("Password length should be greater than or equal to 8");
-//            return;
-//        } else if(!binding.password.getText().toString().equals(binding.cpassword.getText().toString())){
-//            binding.password.setError("Password not matched write again!");
-//            binding.password.setText("");
-//            binding.cpassword.setText("");
-//            return;
-//        }
+
         registerUser();
     }
 
@@ -55,7 +47,6 @@ public class RegisterActivity extends AppCompatActivity {
         Intent intent = new Intent(RegisterActivity.this, OTPVerificationActivity.class);
         intent.putExtra("USERNAME", binding.name.getText().toString());
         intent.putExtra("MOBILE", binding.mobNum.getText().toString());
-        intent.putExtra("PASSWORD", "123456789");
         startActivity(intent);
     }
 }

@@ -2,6 +2,7 @@ package com.myinnovation.smartirrigationsystem.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.myinnovation.smartirrigationsystem.Modals.Notification;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     DecimalFormat df = new DecimalFormat("#.##");
 
     private String weatherData = "";
+    private DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,27 +52,13 @@ public class MainActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         weatherThread thread = new weatherThread();
         thread.start();
-
+        refreshPage();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 
-        FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getUid()).child("NotificationCount").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    binding.notificationNumber.setText(snapshot.getValue(String.class));
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
         binding.notification.setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, MyNotificationActivity.class));
+            startActivity(new Intent(MainActivity.this, NotificationActivity.class));
         });
 
         binding.soilMoistureCardView.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, MoistureSensorInfoActivity.class)));
@@ -150,6 +139,76 @@ public class MainActivity extends AppCompatActivity {
                     });
             requestQueue.add(stringRequest);
         }
+    }
+
+    private void refreshPage(){
+        reference.child("Users").child(FirebaseAuth.getInstance().getUid()).child("NotificationCount").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    binding.notificationNumber.setText(snapshot.getValue(String.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        reference.child("Temperature").child("Value").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    binding.temperatureSensorValue.setText(snapshot.getValue(String.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        reference.child("Humidity").child("Value").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    binding.humidityValue.setText(snapshot.getValue(String.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        reference.child("MoistureSensor").child("Value").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    binding.moistureSensorValue.setText(String.valueOf(snapshot.getValue(Integer.class)));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        refreshThread();
+    }
+
+    private void refreshThread(){
+        final Handler handler = new Handler();
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                refreshPage();
+            }
+        };
+        handler.postDelayed(runnable, 1000);
     }
 
     private void showToast(String str) {
