@@ -66,29 +66,18 @@
                 app:layout_constraintStart_toEndOf="@+id/textView"
                 app:layout_constraintTop_toTopOf="@+id/textView" />
 
-            <androidx.cardview.widget.CardView
+
+            <TextView
+                android:id="@+id/notification_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="-12dp"
-                android:layout_marginLeft="-12dp"
-                app:cardBackgroundColor="@color/light_orange"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="8dp"
+                android:text=""
+                android:textColor="@color/yellow"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/notification"
-                app:layout_constraintStart_toEndOf="@+id/notification"
-                app:layout_constraintTop_toTopOf="@+id/notification">
-
-                <TextView
-                    android:id="@+id/notification_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-            </androidx.cardview.widget.CardView>
-
+                app:layout_constraintEnd_toEndOf="@+id/notification"
+                app:layout_constraintTop_toTopOf="@+id/notification" />
 
             <ImageView
                 android:id="@+id/notification"

@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
         binding.toMotorActivity.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, AllMoistureSensorActivity.class)));
         binding.setting.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, SettingActivity.class)));
         binding.weatherCardView.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, WeatherActivity.class).putExtra("WR", weatherData)));
-        WeatherApi api = new WeatherApi("Mumbai", "India", getApplicationContext());
     }
 
     private class weatherThread extends Thread{
@@ -142,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void refreshPage(){
-        reference.child("Users").child(FirebaseAuth.getInstance().getUid()).child("NotificationCount").addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.child("NotificationCount").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){

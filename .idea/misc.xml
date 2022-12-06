@@ -3,9 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/Smart-Irrigation-System/app/src/main/res/drawable/black_notification.xml" value="0.2595" />
         <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/Smart-Irrigation-System/app/src/main/res/layout/activity_all_moisture_sensor.xml" value="0.264" />
         <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/Smart-Irrigation-System/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
-        <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/Smart-Irrigation-System/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/Smart-Irrigation-System/app/src/main/res/layout/activity_main.xml" value="0.4" />
         <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/Smart-Irrigation-System/app/src/main/res/layout/activity_moisture_sensor.xml" value="0.25416666666666665" />
         <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/Smart-Irrigation-System/app/src/main/res/layout/activity_moisture_sensor_info.xml" value="0.25416666666666665" />
         <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/Smart-Irrigation-System/app/src/main/res/layout/activity_motor.xml" value="0.25416666666666665" />
@@ -19,6 +20,7 @@
         <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/Smart-Irrigation-System/app/src/main/res/layout/activity_weather.xml" value="0.25025641025641027" />
         <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/Smart-Irrigation-System/app/src/main/res/layout/notification_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/Smart-Irrigation-System/app/src/main/res/layout/single_moisture_sensor_layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/Smart-Irrigation-System/app/src/main/res/layout/single_notification_layout.xml" value="0.25025641025641027" />
         <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/Smart-Irrigation-System/app/src/main/res/layout/slider1.xml" value="0.25416666666666665" />
         <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/Smart-Irrigation-System/app/src/main/res/layout/slider2.xml" value="0.25416666666666665" />
         <entry key="..\:/__T.Y.B.Tech Semester 5/Mini Project/MP1/Smart-Irrigation-System/app/src/main/res/layout/slider3.xml" value="0.25416666666666665" />
