@@ -1,6 +1,11 @@
 package com.myinnovation.smartirrigationsystem.Activities;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
@@ -8,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -15,15 +21,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.myinnovation.smartirrigationsystem.Modals.Notification;
 import com.myinnovation.smartirrigationsystem.R;
-import com.myinnovation.smartirrigationsystem.Utitlity.WeatherApi;
 import com.myinnovation.smartirrigationsystem.databinding.ActivityMainBinding;
 
 import org.json.JSONArray;
@@ -56,8 +59,21 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
+        reference.child("Notification").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    sendNotification("Visit Notification page to know more about it");
+                }
+            }
 
-        binding.notification.setOnClickListener(v -> {
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        binding.notificationModal.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, NotificationActivity.class));
         });
 
@@ -69,22 +85,53 @@ public class MainActivity extends AppCompatActivity {
         binding.weatherCardView.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, WeatherActivity.class).putExtra("WR", weatherData)));
     }
 
-    private class weatherThread extends Thread{
+    private void sendNotification(String str) {
+        NotificationManager mNotificationManager;
+
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(getApplicationContext(), "notify_001");
+        Intent ii = new Intent(getApplicationContext().getApplicationContext(), NotificationActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, ii, 0);
+
+        mBuilder.setContentIntent(pendingIntent);
+        mBuilder.setSmallIcon(R.drawable.black_notification);
+        mBuilder.setContentTitle("You have a notification");
+        mBuilder.setContentText(str);
+
+        mNotificationManager =
+                (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String channelId = "Your_channel_id";
+            NotificationChannel channel = new NotificationChannel(
+                    channelId,
+                    "Channel human readable title",
+                    NotificationManager.IMPORTANCE_HIGH);
+            mNotificationManager.createNotificationChannel(channel);
+            mBuilder.setChannelId(channelId);
+        }
+
+        mNotificationManager.notify(0, mBuilder.build());
+
+    }
+
+    private class weatherThread extends Thread {
 
         @Override
         public void run() {
             getWeatherDetails();
         }
     }
-    public void getWeatherDetails(){
+
+    public void getWeatherDetails() {
         String tempUrl = "";
         String city = "Sangli";
         String country = "India";
-        if(city.equals("")){
-        }else{
-            if(!country.equals("")){
+        if (city.equals("")) {
+        } else {
+            if (!country.equals("")) {
                 tempUrl = url + "?q=" + city + "," + country + "&appid=" + appid;
-            }else{
+            } else {
                 tempUrl = url + "?q=" + city + "&appid=" + appid;
             }
             StringRequest
@@ -140,11 +187,67 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void refreshPage(){
+    private void refreshPage() {
+        reference.child("Temperature").child("State")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            if (snapshot.getValue(Boolean.class)) {
+                                binding.temperatureSensorState.setImageDrawable(getResources().getDrawable(R.drawable.sensor_on));
+                                reference.child("Temperature").child("Value")
+                                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                if (snapshot.exists()) {
+                                                    binding.temperatureSensorValue.setText(snapshot.getValue(String.class));
+                                                } else {
+                                                    binding.temperatureSensorValue.setText("0");
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+
+                                reference.child("Humidity").child("Value")
+                                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                if (snapshot.exists()) {
+                                                    binding.humidityValue.setText(snapshot.getValue(String.class));
+                                                } else {
+                                                    binding.humidityValue.setText("0");
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+                            } else {
+                                binding.temperatureSensorState.setImageDrawable(getResources().getDrawable(R.drawable.sensor_off));
+                                binding.temperatureSensorValue.setText("Off");
+                                binding.humidityValue.setText("Off");
+                                reference.child("Temperature").child("Value").setValue("0");
+                                reference.child("Humidity").child("Value").setValue("0");
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
         reference.child("NotificationCount").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
+                if (snapshot.exists()) {
                     binding.notificationNumber.setText(snapshot.getValue(String.class));
                 }
             }
@@ -155,51 +258,45 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        reference.child("Temperature").child("Value").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    binding.temperatureSensorValue.setText(snapshot.getValue(String.class));
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        reference.child("MoistureSensor").child("State")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            if(snapshot.getValue(Boolean.class)){
+                                reference.child("MoistureSensor").child("Value").addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        if (snapshot.exists()) {
+                                            binding.moistureSensorValue.setText(snapshot.getValue(String.class));
+                                        } else{
+                                            binding.moistureSensorValue.setText("0");
+                                        }
+                                    }
 
-            }
-        });
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
 
-        reference.child("Humidity").child("Value").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    binding.humidityValue.setText(snapshot.getValue(String.class));
-                }
-            }
+                                    }
+                                });
+                            }else{
+                                binding.moistureSensorValue.setText("Off");
+                                reference.child("MoistureSensor").child("Value").setValue("0");
+                            }
+                        }
+                    }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+                    }
+                });
 
-        reference.child("MoistureSensor").child("Value").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    binding.moistureSensorValue.setText(String.valueOf(snapshot.getValue(Integer.class)));
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
         refreshThread();
     }
 
-    private void refreshThread(){
+    private void refreshThread() {
         final Handler handler = new Handler();
         final Runnable runnable = new Runnable() {
             @Override
@@ -213,7 +310,6 @@ public class MainActivity extends AppCompatActivity {
     private void showToast(String str) {
         Toast.makeText(this, str, Toast.LENGTH_LONG).show();
     }
-
 
 
 }

@@ -49,10 +49,11 @@ public class MoistureSensorAdapter extends RecyclerView.Adapter<MoistureSensorAd
                 holder.binding.sensorValue.setText("0");
                 holder.binding.cardView3.setCardBackgroundColor(context.getResources().getColor(R.color.red));
             }
-
-            holder.itemView.setOnClickListener(v -> {
-                context.startActivity(new Intent(context, MotorActivity.class).putExtra("SID", sensor.getSensorId()));
-            });
+            if(sensor.getState()){
+                holder.itemView.setOnClickListener(v -> {
+                    context.startActivity(new Intent(context, MotorActivity.class).putExtra("SID", sensor.getSensorId()));
+                });
+            }
         }
 
     }

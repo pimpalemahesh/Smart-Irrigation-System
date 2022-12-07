@@ -1,15 +1,15 @@
 package com.myinnovation.smartirrigationsystem.Modals;
 
-public class Notification {
+public class NotificationModal {
     String nId, nText, nType;
 
-    public Notification(String nId, String nText, String nType) {
+    public NotificationModal(String nId, String nText, String nType) {
         this.nId = nId;
         this.nText = nText;
         this.nType = nType;
     }
 
-    public Notification() {
+    public NotificationModal() {
     }
 
     public String getnId() {

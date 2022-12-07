@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.myinnovation.smartirrigationsystem.R;
 import com.myinnovation.smartirrigationsystem.databinding.ActivityMotorBinding;
 import com.myinnovation.smartirrigationsystem.databinding.ActivityTemperatureSensorBinding;
 
@@ -29,6 +30,25 @@ public class TemperatureSensorActivity extends AppCompatActivity {
     }
 
     private void refreshPage(){
+        reference.child("Temperature").child("state")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            if(snapshot.getValue(Boolean.class)){
+                                binding.temperatureState.setImageDrawable(getResources().getDrawable(R.drawable.sensor_on));
+                            } else{
+                                binding.temperatureState.setImageDrawable(getResources().getDrawable(R.drawable.sensor_off));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
         reference.child("Temperature").child("Value").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

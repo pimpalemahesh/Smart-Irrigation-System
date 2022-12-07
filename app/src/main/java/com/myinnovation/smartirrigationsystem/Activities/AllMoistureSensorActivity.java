@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,52 +35,45 @@ public class AllMoistureSensorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAllMoistureSensorBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        FirebaseDataThread thread = new FirebaseDataThread();
-        thread.start();
+        refreshPage();
 
         binding.addSensor.setOnClickListener(v -> startActivity(new Intent(AllMoistureSensorActivity.this, AddMoistureSensorActivity.class)));
-//        List = new ArrayList<>();
-//        List.add(new MoistureSensorModel("101", "23", true));
-//        List.add(new MoistureSensorModel("102", "18", true));
-//        List.add(new MoistureSensorModel("103", "22", false));
-//        List.add(new MoistureSensorModel("104", "20", true));
-//        List.add(new MoistureSensorModel("105", "14", true));
-//        List.add(new MoistureSensorModel("106", "12", true));
-//        List.add(new MoistureSensorModel("107", "11", false));
-//        List.add(new MoistureSensorModel("108", "17", true));
-
 
     }
 
-    class FirebaseDataThread extends Thread{
-
-        @Override
-        public void run() {
-            try{
-                reference.child("Users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).child("SENSORS").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.exists()){
-                            for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                                List.add(dataSnapshot.getValue(MoistureSensorModel.class));
-                            }
-                        }
+    private void refreshPage(){
+        reference.child("Users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).child("SENSORS").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List.clear();
+                if(snapshot.exists()){
+                    for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                        List.add(dataSnapshot.getValue(MoistureSensorModel.class));
                     }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-            } catch (Exception e){
-                Toast.makeText(AllMoistureSensorActivity.this, "Error 404 " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
 
-            adapter = new MoistureSensorAdapter(List, getApplicationContext());
-            binding.allSensorRclv.setAdapter(adapter);
-            binding.allSensorRclv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-            binding.allSensorRclv.setHasFixedSize(true);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-        }
+            }
+        });
+        adapter = new MoistureSensorAdapter(List, getApplicationContext());
+        binding.allSensorRclv.setAdapter(adapter);
+        binding.allSensorRclv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        binding.allSensorRclv.setHasFixedSize(true);
+
+        refreshThread();
+    }
+
+    private void refreshThread() {
+        final Handler handler = new Handler();
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                refreshPage();
+            }
+        };
+        handler.postDelayed(runnable, 1000);
     }
 }

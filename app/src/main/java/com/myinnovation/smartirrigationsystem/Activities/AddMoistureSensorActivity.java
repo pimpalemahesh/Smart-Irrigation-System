@@ -3,6 +3,7 @@ package com.myinnovation.smartirrigationsystem.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -49,6 +50,7 @@ public class AddMoistureSensorActivity extends AppCompatActivity {
                                 public void onSuccess(Void unused) {
                                     ShowToast("New Sensor Added Successfully!");
                                     binding.bar.setVisibility(View.INVISIBLE);
+                                    startActivity(new Intent(getApplicationContext(), AllMoistureSensorActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
