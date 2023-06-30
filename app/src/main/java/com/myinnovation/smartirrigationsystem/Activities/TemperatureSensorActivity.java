@@ -30,7 +30,7 @@ public class TemperatureSensorActivity extends AppCompatActivity {
     }
 
     private void refreshPage(){
-        reference.child("Temperature").child("state")
+        reference.child("Temperature").child("State")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

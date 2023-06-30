@@ -37,9 +37,13 @@ public class MoistureSensorAdapter extends RecyclerView.Adapter<MoistureSensorAd
         holder.binding.sensorId.setText(sensor.getSensorId());
         holder.binding.sensorValue.setText(String.valueOf(sensor.getSensorValue()));
         if(sensor.getState() != null){
-            if(sensor.getState() && sensor.getSensorValue() < 15){
+            if(sensor.getState() && sensor.getSensorValue() >= 60 && sensor.getSensorValue() <= 80){
                 holder.binding.sensorState.setImageResource(R.drawable.sensor_on);
                 holder.binding.cardView3.setCardBackgroundColor(context.getResources().getColor(R.color.yellow));
+            } else if(sensor.getState() && sensor.getSensorValue() <= 60){
+                holder.binding.sensorState.setImageResource(R.drawable.sensor_on);
+                holder.binding.sensorValue.setText("0");
+                holder.binding.cardView3.setCardBackgroundColor(context.getResources().getColor(R.color.red));
             } else if(sensor.getState()){
                 holder.binding.sensorState.setImageResource(R.drawable.sensor_on);
                 holder.binding.cardView3.setCardBackgroundColor(context.getResources().getColor(R.color.green));
@@ -51,7 +55,7 @@ public class MoistureSensorAdapter extends RecyclerView.Adapter<MoistureSensorAd
             }
             if(sensor.getState()){
                 holder.itemView.setOnClickListener(v -> {
-                    context.startActivity(new Intent(context, MotorActivity.class).putExtra("SID", sensor.getSensorId()));
+                    context.startActivity(new Intent(context, MotorActivity.class).putExtra("SID", sensor.getSensorId()).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                 });
             }
         }

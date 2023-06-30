@@ -38,6 +38,7 @@ import java.text.DecimalFormat;
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
+    private long pressedTime;
 
     RequestQueue requestQueue;
     private final String url = "https://api.openweathermap.org/data/2.5/weather";
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(getApplicationContext(), "notify_001");
         Intent ii = new Intent(getApplicationContext().getApplicationContext(), NotificationActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, ii, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this, 0, ii, PendingIntent.FLAG_MUTABLE);
 
         mBuilder.setContentIntent(pendingIntent);
         mBuilder.setSmallIcon(R.drawable.black_notification);
@@ -169,8 +170,10 @@ public class MainActivity extends AppCompatActivity {
                                         + getResources().getString(R.string.cloudiness) + " " + clouds + "%\n"
                                         + getResources().getString(R.string.pressure) + " " + pressure + " hPa\n";
 
+                                int c = Integer.parseInt(clouds);
+                                c = c - 30;
                                 binding.temperature.setText(df.format(temp));
-                                binding.rain.setText(clouds);
+                                binding.rain.setText(String.valueOf(c));
                                 binding.wind.setText(wind);
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -263,14 +266,14 @@ public class MainActivity extends AppCompatActivity {
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.exists()){
-                            if(snapshot.getValue(Boolean.class)){
+                        if (snapshot.exists()) {
+                            if (snapshot.getValue(Boolean.class)) {
                                 reference.child("MoistureSensor").child("Value").addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         if (snapshot.exists()) {
                                             binding.moistureSensorValue.setText(snapshot.getValue(String.class));
-                                        } else{
+                                        } else {
                                             binding.moistureSensorValue.setText("0");
                                         }
                                     }
@@ -280,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     }
                                 });
-                            }else{
+                            } else {
                                 binding.moistureSensorValue.setText("Off");
                                 reference.child("MoistureSensor").child("Value").setValue("0");
                             }
@@ -298,18 +301,22 @@ public class MainActivity extends AppCompatActivity {
 
     private void refreshThread() {
         final Handler handler = new Handler();
-        final Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                refreshPage();
-            }
-        };
+        final Runnable runnable = () -> refreshPage();
         handler.postDelayed(runnable, 1000);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (pressedTime + 2000 > System.currentTimeMillis()) {
+//            super.onBackPressed();
+            finishAffinity();
+        } else {
+            Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT).show();
+        }
+        pressedTime = System.currentTimeMillis();
     }
 
     private void showToast(String str) {
         Toast.makeText(this, str, Toast.LENGTH_LONG).show();
     }
-
-
 }
